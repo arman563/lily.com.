@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Animated Login with Headline</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #eef2f3;
+        }
+
+        /* Headline section */
+        .headline {
+            width: 100%;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #a6ff7d, #7a85ff);
+            color: rgb(0, 0, 0);
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .login-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .login-box {
+            background: #e0e5ec;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 8px 8px 16px #bec3cf,
+                        -8px -8px 16px #ffffff;
+            width: 320px;
+            text-align: center;
+            position: relative;
+        }
+
+        .character {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #e0e5ec;
+            box-shadow: inset 6px 6px 12px #bec3cf,
+                        inset -6px -6px 12px #ffffff;
+            overflow: hidden;
+        }
+
+        .character img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        form {
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 12px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            background: #e0e5ec;
+            box-shadow: inset 4px 4px 8px #bec3cf,
+                        inset -4px -4px 8px #ffffff;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:hover,
+        input[type="password"]:hover,
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            box-shadow: 0 0 8px rgba(108, 99, 255, 0.5),
+                        inset 2px 2px 4px #bec3cf,
+                        inset -2px -2px 4px #ffffff;
+            transform: scale(1.02);
+        }
+
+        .show-pass {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-size: 13px;
+            color: #6c7293;
+        }
+
+        button {
+            background: linear-gradient(135deg, #3f3e4d, #3e404e);
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 4px 4px 8px #bec3cf,
+                        -4px -4px 8px #ffffff;
+            transition: all 0.2s ease-in-out;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 12px #bec3cf,
+                        -6px -6px 12px #ffffff;
+        }
+
+        button:active {
+            box-shadow: inset 4px 4px 8px #bec3cf,
+                        inset -4px -4px 8px #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="headline">Lily International School</div>
+
+    <div class="login-container">
+        <div class="login-box">
+
+            <div class="character">
+                <img src="/static/img/myphoto.png" alt="Profile Picture">
+            </div>
+
+            <form id="loginForm">
+                <input type="text" id="email" name="email" placeholder="Username">
+                <input type="password" id="password" name="password" placeholder="Password">
+
+                <label class="show-pass">
+                    <input type="checkbox" id="showPass">
+                    Show Password
+                </label>
+
+                <button type="submit">Login</button>
+            </form>
+
+        </div>
+    </div>
+
+<script>
+    const form = document.getElementById('loginForm');
+    const showPass = document.getElementById('showPass');
+    const passwordInput = document.getElementById('password');
+
+    // Toggle password visibility
+    showPass.addEventListener('change', () => {
+        passwordInput.type = showPass.checked ? 'text' : 'password';
+    });
+
+    // Handle login
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        if(email === 'lily' && password === '2026') {
+            window.location.href = 'welcome.html'; // Replace with your new page
+        } else {
+            alert('Invalid username or password!');
+        }
+    });
+</script>
+
+</body>
+</html>
